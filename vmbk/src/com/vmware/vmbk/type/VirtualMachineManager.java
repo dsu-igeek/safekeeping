@@ -43,6 +43,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.UUID;
 
@@ -1419,12 +1420,13 @@ public class VirtualMachineManager implements FirstClassObject {
 	return result;
     }
 
-    public boolean reconfigureVm(final FcoArchiveManager vmArcMgr, final RestoreManagedInfo managedInfo) {
+     public boolean reconfigureVm(final FcoArchiveManager vmArcMgr, final GenerationProfile profGen,
+	    final RestoreManagedInfo managedInfo) throws Exception {
 	logger.entering(getClass().getName(), "reconfigureVm", new Object[] { vmArcMgr, managedInfo });
 	boolean result = false;
 
 	final List<VirtualControllerManager> vcmList = vmArcMgr
-		.generateVirtualControllerManagerList(managedInfo.getDsInfo().getName());
+		.generateVirtualControllerManagerList(profGen,managedInfo.getDsInfo().getName());
 	logger.info(vmArcMgr.toStringVirtualControllerManagerList(vcmList));
 	final VirtualMachineConfigSpec vmConfigSpec = new VirtualMachineConfigSpec();
 
