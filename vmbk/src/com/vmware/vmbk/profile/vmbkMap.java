@@ -40,7 +40,7 @@ interface vmbkMap {
     void clear();
 
     default Boolean getBooleanProperty(final String section, final String key) {
-	return getBooleanProperty(section, key, null);
+	return getBooleanProperty(section, key, false);
     }
 
     Boolean getBooleanProperty(final String section, final String key, final Boolean defaultValue);
